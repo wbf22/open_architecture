@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Upload Design  Open Architecture</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Open<span>Arch</span></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="search.html">Explore</a>
+      <a href="upload.html">Upload</a>
+      <a href="account.html" id="accountLink">Account</a>
+      <a href="login.html" id="loginLink">Sign In</a>
+    </nav>
+  </header>
+
+  <main class="container upload-page">
+    <h1>Share a Design</h1>
+    <form id="uploadForm" class="card">
+      <label>Title
+        <input type="text" id="title" required>
+      </label>
+      <label>Description
+        <textarea id="description" rows="6" required></textarea>
+      </label>
+      <label>Category
+        <select id="category">
+          <option>Residential</option>
+          <option>Community</option>
+          <option>Commercial</option>
+          <option>Landscape</option>
+        </select>
+      </label>
+      <label>Image
+        <input type="file" id="image">
+      </label>
+      <label>License
+        <select id="license">
+          <option>Creative Commons</option>
+          <option>All Rights Reserved</option>
+          <option>GPL</option>
+        </select>
+      </label>
+
+      <div class="form-actions">
+        <button class="btn" type="submit">Publish</button>
+        <a href="account.html" class="btn secondary">Cancel</a>
+      </div>
+    </form>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

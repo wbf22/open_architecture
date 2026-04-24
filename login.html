@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sign In  Open Architecture</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Open<span>Arch</span></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="search.html">Explore</a>
+      <a href="upload.html">Upload</a>
+      <a href="account.html" id="accountLink">Account</a>
+      <a href="login.html" id="loginLink">Sign In</a>
+    </nav>
+  </header>
+
+  <main class="auth container">
+    <h1>Sign In</h1>
+    <form id="loginForm" class="card">
+      <label>Email
+        <input type="email" id="email" required>
+      </label>
+      <label>Password
+        <input type="password" id="password" required>
+      </label>
+      <div class="form-actions">
+        <button class="btn" type="submit">Sign In</button>
+        <a href="signup.html" class="btn secondary">Create Account</a>
+      </div>
+    </form>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
