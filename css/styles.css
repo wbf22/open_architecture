@@ -1,33 +1,32 @@
 /* Themeable CSS variables — switch themes via document.documentElement.dataset.theme = 'mint' | 'sunset' | 'ocean' | 'paper' */
-:root{
-  /* semantic tokens used across the site */
-  --bg: #0f1724; /* page background */
-  --card: #0b1220; /* primary card surface */
-  --surface-2: #071122; /* secondary surface */
-  --muted: #98a0b3; /* subdued text */
+ :root{
+  /* Default theme: Sunset (warm coral / gold / deep magenta) */
+  --bg: linear-gradient(180deg,#2a0f12,#12090a);
+  --card: linear-gradient(180deg,#2a0f12,#190909);
+  --surface-2: #241012;
+  --muted: #e4c9bd;
 
-  /* multiple accents (tertiary/complementary) */
-  --accent-1: #6ee7b7; /* primary accent */
-  --accent-2: #7c4dff; /* secondary accent */
-  --accent-3: #3b82f6; /* tertiary accent */
-  --accent-1-foreground: #051019; /* text on accent-1 */
-  --accent-2-foreground: #ffffff;
-  --accent-3-foreground: #051019;
+  --accent-1: #ffb366; /* saffron/gold */
+  --accent-2: #ff6b6b; /* coral */
+  --accent-3: #9b4d9b; /* deep magenta */
+  --accent-1-foreground: #2b0a06;
+  --accent-2-foreground: #2b0a06;
+  --accent-3-foreground: #ffffff;
 
-  --text: #e6eef8; /* main text */
+  --text: #fff6f3;
   --glass: rgba(255,255,255,0.04);
   --radius: 12px;
   --max-width: 1100px;
-  --focus: rgba(110,231,183,0.18);
-  --border: rgba(255,255,255,0.06);
-  --header-bg: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-  --card-shadow: 0 10px 30px rgba(6,10,18,0.6);
-  --hero-overlay: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.18));
-  --section-bg: rgba(255,255,255,0.02);
+  --focus: rgba(255,182,102,0.16);
+  --border: rgba(255,182,102,0.08);
+  --header-bg: linear-gradient(90deg, rgba(255,182,102,0.12), rgba(255,107,107,0.05));
+  --card-shadow: 0 14px 40px rgba(20,8,8,0.66);
+  --hero-overlay: linear-gradient(180deg, rgba(255,182,102,0.18), rgba(255,107,107,0.08));
+  --section-bg: linear-gradient(180deg, rgba(255,182,102,0.03), rgba(155,77,155,0.02));
 }
 
-/* Mint (default) — mint + purple + blue */
-:root, :root[data-theme='mint']{
+/* Mint theme (available via data-theme='mint') */
+:root[data-theme='mint']{
   --bg: #0f1724;
   --card: linear-gradient(180deg,#07101a,#0b1220);
   --surface-2: #081725;
@@ -49,7 +48,7 @@
   --section-bg: linear-gradient(180deg, rgba(110,231,183,0.03), rgba(59,130,246,0.02));
 }
 
-/* Sunset: warm coral / gold / deep magenta (vibrant triad) */
+/* Sunset (explicit) — kept for parity with data-theme switch */
 :root[data-theme='sunset']{
   --bg: linear-gradient(180deg,#2a0f12,#12090a);
   --card: linear-gradient(180deg,#2a0f12,#190909);
@@ -71,7 +70,6 @@
   --hero-overlay: linear-gradient(180deg, rgba(255,182,102,0.18), rgba(255,107,107,0.08));
   --section-bg: linear-gradient(180deg, rgba(255,182,102,0.03), rgba(155,77,155,0.02));
 }
-
 /* Ocean: teal + blue + sea green */
 :root[data-theme='ocean']{
   --bg: linear-gradient(180deg,#021725,#011018);
@@ -146,22 +144,19 @@ body{
 .theme-select{margin-left:12px;padding:6px 8px;border-radius:8px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);color:var(--text)}
 
 .hero{padding:48px 0}
-.hero-inner{display:flex;gap:28px;align-items:center}
-.hero-copy{flex:1}
-.hero h1{font-size:36px;margin:0 0 12px}
-.hero p{margin:0 0 16px;color:var(--muted)}
+.hero-inner{display:flex;gap:28px;align-items:center;flex-direction:column}
+.hero-copy{max-width:760px;margin:18px auto}
+.hero h1{font-size:36px;margin:0 0 12px;text-align:center}
+.hero p{margin:0 0 16px;color:var(--muted);text-align:center}
 .hero-ctas .btn{margin-right:12px}
 
-/* Hero card — use split accents + image overlay */
-.hero-card{width:320px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));box-shadow:var(--card-shadow);border:1px solid var(--border);position:relative}
-.card-top img{display:block;width:100%;height:200px;object-fit:cover}
-.card-top::after{content:'';position:absolute;left:0;right:0;top:0;height:200px;background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.18)), linear-gradient(90deg, rgba(0,0,0,0.0), rgba(0,0,0,0.0));pointer-events:none}
-.card-bottom{padding:12px;background:linear-gradient(180deg,transparent, rgba(0,0,0,0.02));display:flex;justify-content:space-between;align-items:center}
-.card-bottom strong{display:block}
-
-/* Sectioning: alternate background washes using section-bg to add color */
-.vision{padding:40px 0;background:var(--section-bg)}
-.vision h2{margin-top:0}
+/* Hero image rotator styles */
+.rot-img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 900ms ease}
+.rot-img.visible{opacity:1}
+.hero-card{width:100%;max-width:1200px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));box-shadow:var(--card-shadow);border:1px solid var(--border);position:relative;margin:0 auto}
+.card-top{position:relative;height:540px;overflow:hidden}
+.card-bottom{display:none;padding:12px;background:linear-gradient(180deg,transparent, rgba(0,0,0,0.02));justify-content:space-between;align-items:center}
+.vision p{max-width:900px;}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 
 /* Cards: use surface gradients, accent bars, and more color on hover */
@@ -202,6 +197,7 @@ body{
 .muted:hover{color:var(--text)}
 
 /* Auth & form surfaces get accent edges */
+/* Auth & form surfaces get accent edges */
 .auth-page{display:flex;min-height:100vh;align-items:center;justify-content:center}
 .auth-card{background:var(--card);padding:28px;border-radius:14px;min-width:320px;max-width:420px;border:1px solid var(--border);box-shadow:var(--card-shadow)}
 .auth-card h1{margin-top:0}
@@ -209,22 +205,24 @@ body{
 .auth-form input, .auth-form textarea, .auth-form select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);color:var(--text)}
 .auth-actions{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
 
-/* Account panel — use multiple accents for stronger differentiation */
-.account-page{display:flex;gap:24px;padding:40px 0}
-.account-sidebar{width:260px}
-.account-sidebar .profile{background:linear-gradient(90deg,var(--accent-1),var(--accent-3));padding:18px;border-radius:12px;text-align:center;color:var(--accent-1-foreground);border:1px solid rgba(0,0,0,0.06);box-shadow:0 8px 26px rgba(0,0,0,0.18)}
-.account-sidebar .profile img{border-radius:50%;width:72px;height:72px;border:4px solid rgba(255,255,255,0.08)}
-.account-sidebar nav a{display:block;padding:10px;border-radius:8px;color:var(--text);text-decoration:none}
-.account-sidebar nav a:hover{background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent)}
-.account-main{flex:1}
+/* Upload page styles */
+.upload-page{padding:40px 0}
+.upload-form{background:var(--card);padding:20px;border-radius:12px;border:1px solid var(--border);box-shadow:var(--card-shadow);max-width:860px;margin:18px auto;display:grid;gap:14px}
+.upload-form h1{margin:0 0 6px}
+.upload-form label{display:flex;flex-direction:column;color:var(--text);font-weight:600;font-size:14px}
+.upload-form input[type="text"], .upload-form input[name="tags"], .upload-form textarea, .upload-form select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);color:var(--text)}
+.upload-form textarea{min-height:120px;resize:vertical}
+.upload-form input[type="file"]{padding:8px 6px;border-radius:8px;border:1px dashed var(--border);background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);color:var(--text);cursor:pointer}
+.upload-form .file-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.upload-form .file-item{background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);border:1px solid var(--border);padding:8px 10px;border-radius:8px;font-size:13px;color:var(--muted)}
+.upload-actions{display:flex;gap:12px;align-items:center;justify-content:flex-start;margin-top:8px}
+.upload-actions .muted{margin-left:6px}
 
-.design-page{display:grid;grid-template-columns:1fr 320px;gap:24px;padding:40px 0}
-.design-media img{width:100%;border-radius:12px}
-.design-info .meta{color:var(--muted)}
-.design-sidebar .card{margin-bottom:12px}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.gallery-grid img{width:100%;height:60px;object-fit:cover;border-radius:6px}
-
+/* small tweaks for mobile */
+@media (max-width:600px){
+  .upload-form{padding:16px;margin:12px}
+  .upload-form label{font-size:13px}
+}
 /* badges, tags — use each accent for variety */
 .badge{display:inline-block;padding:6px 8px;border-radius:8px;background:linear-gradient(90deg,var(--accent-2),var(--accent-3));color:var(--accent-2-foreground);border:1px solid rgba(0,0,0,0.06)}
 .accent-bg{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:var(--accent-1-foreground);padding:6px 10px;border-radius:8px}
