@@ -2,10 +2,18 @@
 :root{
   /* semantic tokens used across the site */
   --bg: #0f1724; /* page background */
-  --card: #0b1220; /* surface / cards */
+  --card: #0b1220; /* primary card surface */
+  --surface-2: #071122; /* secondary surface */
   --muted: #98a0b3; /* subdued text */
-  --accent: #6ee7b7; /* primary accent */
-  --accent-2: #7c4dff; /* secondary accent (gradient end) */
+
+  /* multiple accents (tertiary/complementary) */
+  --accent-1: #6ee7b7; /* primary accent */
+  --accent-2: #7c4dff; /* secondary accent */
+  --accent-3: #3b82f6; /* tertiary accent */
+  --accent-1-foreground: #051019; /* text on accent-1 */
+  --accent-2-foreground: #ffffff;
+  --accent-3-foreground: #051019;
+
   --text: #e6eef8; /* main text */
   --glass: rgba(255,255,255,0.04);
   --radius: 12px;
@@ -15,66 +23,99 @@
   --header-bg: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
   --card-shadow: 0 10px 30px rgba(6,10,18,0.6);
   --hero-overlay: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.18));
+  --section-bg: rgba(255,255,255,0.02);
 }
 
-/* Mint (default) */
+/* Mint (default) — mint + purple + blue */
 :root, :root[data-theme='mint']{
   --bg: #0f1724;
-  --card: #0b1220;
+  --card: linear-gradient(180deg,#07101a,#0b1220);
+  --surface-2: #081725;
   --muted: #98a0b3;
-  --accent: #6ee7b7;
-  --accent-2: #7c4dff;
+
+  --accent-1: #6ee7b7; /* mint */
+  --accent-2: #7c4dff; /* purple */
+  --accent-3: #3b82f6; /* blue */
+  --accent-1-foreground: #042025;
+  --accent-2-foreground: #ffffff;
+  --accent-3-foreground: #ffffff;
+
   --text: #e6eef8;
   --focus: rgba(110,231,183,0.12);
-  --border: rgba(255,255,255,0.06);
-  --header-bg: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-  --card-shadow: 0 10px 30px rgba(6,10,18,0.6);
-  --hero-overlay: linear-gradient(180deg, rgba(110,231,183,0.06), rgba(124,77,255,0.02));
+  --border: rgba(110,231,183,0.06);
+  --header-bg: linear-gradient(90deg, rgba(110,231,183,0.08), rgba(124,77,255,0.04));
+  --card-shadow: 0 14px 40px rgba(6,10,18,0.66);
+  --hero-overlay: linear-gradient(180deg, rgba(110,231,183,0.18), rgba(124,77,255,0.08));
+  --section-bg: linear-gradient(180deg, rgba(110,231,183,0.03), rgba(59,130,246,0.02));
 }
 
-/* Sunset: warm coral / gold */
+/* Sunset: warm coral / gold / deep magenta (vibrant triad) */
 :root[data-theme='sunset']{
-  --bg: linear-gradient(180deg,#1a0f12,#12090a);
-  --card: #1a0f12;
-  --muted: #d6b7a8;
-  --accent: #ffb366; /* warm gold */
+  --bg: linear-gradient(180deg,#2a0f12,#12090a);
+  --card: linear-gradient(180deg,#2a0f12,#190909);
+  --surface-2: #241012;
+  --muted: #e4c9bd;
+
+  --accent-1: #ffb366; /* saffron/gold */
   --accent-2: #ff6b6b; /* coral */
+  --accent-3: #9b4d9b; /* deep magenta */
+  --accent-1-foreground: #2b0a06;
+  --accent-2-foreground: #2b0a06;
+  --accent-3-foreground: #ffffff;
+
   --text: #fff6f3;
-  --focus: rgba(255,182,102,0.12);
+  --focus: rgba(255,182,102,0.16);
   --border: rgba(255,182,102,0.08);
-  --header-bg: linear-gradient(180deg, rgba(255,182,102,0.02), transparent);
-  --card-shadow: 0 10px 30px rgba(20,8,8,0.6);
-  --hero-overlay: linear-gradient(180deg, rgba(255,182,102,0.06), rgba(255,107,107,0.03));
+  --header-bg: linear-gradient(90deg, rgba(255,182,102,0.12), rgba(255,107,107,0.05));
+  --card-shadow: 0 14px 40px rgba(20,8,8,0.66);
+  --hero-overlay: linear-gradient(180deg, rgba(255,182,102,0.18), rgba(255,107,107,0.08));
+  --section-bg: linear-gradient(180deg, rgba(255,182,102,0.03), rgba(155,77,155,0.02));
 }
 
-/* Ocean: deep blue / teal */
+/* Ocean: teal + blue + sea green */
 :root[data-theme='ocean']{
-  --bg: linear-gradient(180deg,#031527,#021018);
-  --card: #072033;
-  --muted: #86b4c6;
-  --accent: #2dd4bf; /* teal */
+  --bg: linear-gradient(180deg,#021725,#011018);
+  --card: linear-gradient(180deg,#082432,#061a2a);
+  --surface-2: #072a37;
+  --muted: #9bcbd6;
+
+  --accent-1: #2dd4bf; /* teal */
   --accent-2: #3b82f6; /* blue */
+  --accent-3: #06b6d4; /* sea-cyan */
+  --accent-1-foreground: #021724;
+  --accent-2-foreground: #ffffff;
+  --accent-3-foreground: #021724;
+
   --text: #e6f6f9;
-  --focus: rgba(45,212,191,0.12);
+  --focus: rgba(45,212,191,0.14);
   --border: rgba(45,212,191,0.06);
-  --header-bg: linear-gradient(180deg, rgba(45,212,191,0.02), transparent);
-  --card-shadow: 0 10px 30px rgba(2,10,18,0.6);
-  --hero-overlay: linear-gradient(180deg, rgba(45,212,191,0.06), rgba(59,130,246,0.03));
+  --header-bg: linear-gradient(90deg, rgba(45,212,191,0.12), rgba(59,130,246,0.05));
+  --card-shadow: 0 16px 48px rgba(2,10,18,0.7);
+  --hero-overlay: linear-gradient(180deg, rgba(45,212,191,0.18), rgba(59,130,246,0.08));
+  --section-bg: linear-gradient(180deg, rgba(45,212,191,0.03), rgba(14,165,233,0.02));
 }
 
-/* Paper: light, muted neutrals for a daytime/print feel */
+/* Paper: saffron + rust + teal for contrast */
 :root[data-theme='paper']{
   --bg: linear-gradient(180deg,#f7f5f2,#efece8);
-  --card: #ffffff;
+  --card: linear-gradient(180deg,#ffffff,#fffaf6);
+  --surface-2: #fff6ee;
   --muted: #6b6b6b;
-  --accent: #ffb703; /* saffron */
+
+  --accent-1: #ffb703; /* saffron */
   --accent-2: #fb5607; /* rust */
+  --accent-3: #06b6d4; /* teal */
+  --accent-1-foreground: #2b1800;
+  --accent-2-foreground: #fffaf6;
+  --accent-3-foreground: #2b1800;
+
   --text: #111111;
-  --focus: rgba(251,86,7,0.06);
+  --focus: rgba(251,86,7,0.08);
   --border: rgba(17,17,17,0.06);
-  --header-bg: linear-gradient(180deg, rgba(17,17,17,0.02), transparent);
-  --card-shadow: 0 8px 20px rgba(17,17,17,0.06);
-  --hero-overlay: linear-gradient(180deg, rgba(255,183,3,0.04), rgba(251,86,7,0.02));
+  --header-bg: linear-gradient(90deg, rgba(255,183,3,0.12), rgba(251,86,7,0.04));
+  --card-shadow: 0 8px 24px rgba(17,17,17,0.06);
+  --hero-overlay: linear-gradient(180deg, rgba(255,183,3,0.08), rgba(251,86,7,0.04));
+  --section-bg: linear-gradient(180deg, rgba(255,183,3,0.03), rgba(6,182,212,0.02));
 }
 
 /* base layout */
@@ -88,21 +129,21 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   line-height:1.45;
+  transition: background-color 320ms ease, color 320ms ease;
 }
 .container{max-width:var(--max-width);margin:0 auto;padding:24px}
 
-.site-header{backdrop-filter: blur(6px);position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);background:var(--header-bg)}
+/* Header — use accent-1 + accent-2 for a bolder chroma wash */
+.site-header{backdrop-filter: blur(6px);position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);background:var(--header-bg);transition:background 280ms ease}
 .site-header .nav{display:flex;align-items:center;justify-content:space-between}
 .brand{font-weight:800;color:var(--text);text-decoration:none;font-size:18px}
 .site-header nav{display:flex;align-items:center}
 .site-header nav a{color:var(--muted);text-decoration:none;margin-left:18px}
-.site-header nav a.cta{padding:8px 12px;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#051019;font-weight:700}
-.site-header nav a:hover{color:var(--accent)}
+.site-header nav a.cta{padding:8px 12px;border-radius:8px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:var(--accent-1-foreground);font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,0.18)}
+.site-header nav a:hover{color:var(--accent-2)}
 
 /* Theme select styling */
-.theme-select{
-  margin-left:12px;padding:6px 8px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text)
-}
+.theme-select{margin-left:12px;padding:6px 8px;border-radius:8px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);color:var(--text)}
 
 .hero{padding:48px 0}
 .hero-inner{display:flex;gap:28px;align-items:center}
@@ -111,48 +152,70 @@ body{
 .hero p{margin:0 0 16px;color:var(--muted)}
 .hero-ctas .btn{margin-right:12px}
 
-.hero-card{width:320px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);box-shadow:var(--card-shadow);border:1px solid var(--border);position:relative}
+/* Hero card — use split accents + image overlay */
+.hero-card{width:320px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));box-shadow:var(--card-shadow);border:1px solid var(--border);position:relative}
 .card-top img{display:block;width:100%;height:200px;object-fit:cover}
-.card-top::after{content:'';position:absolute;left:0;right:0;top:0;height:200px;background:var(--hero-overlay);pointer-events:none}
-.card-bottom{padding:12px;background:linear-gradient(180deg,transparent, rgba(0,0,0,0.02))}
+.card-top::after{content:'';position:absolute;left:0;right:0;top:0;height:200px;background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.18)), linear-gradient(90deg, rgba(0,0,0,0.0), rgba(0,0,0,0.0));pointer-events:none}
+.card-bottom{padding:12px;background:linear-gradient(180deg,transparent, rgba(0,0,0,0.02));display:flex;justify-content:space-between;align-items:center}
+.card-bottom strong{display:block}
 
-.vision{padding:40px 0}
+/* Sectioning: alternate background washes using section-bg to add color */
+.vision{padding:40px 0;background:var(--section-bg)}
 .vision h2{margin-top:0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--border);box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+
+/* Cards: use surface gradients, accent bars, and more color on hover */
+.card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--border);box-shadow:0 6px 18px rgba(0,0,0,0.12);transition:transform 200ms ease, box-shadow 200ms ease, background 240ms ease}
 .card h3{margin-top:0}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.26)}
+
+/* Add an accent bar to cards that uses the theme triad */
+.card::before{content:'';display:block;height:8px;border-top-left-radius:10px;border-top-right-radius:10px;margin:-18px -18px 12px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2),var(--accent-3));opacity:0.95}
 
 .featured{padding:30px 0}
-#featured-grid .design-card{padding:0;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);overflow:hidden;border-radius:12px}
+#featured-grid .design-card{padding:0;overflow:hidden;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid var(--border);box-shadow:var(--card-shadow)}
 .design-card img{width:100%;height:160px;object-fit:cover;display:block}
-.design-card .info{padding:12px}
+.design-card .info{padding:12px;background:linear-gradient(90deg, rgba(0,0,0,0.0), rgba(0,0,0,0.04));}
+.design-card .info .title{font-weight:700}
 
-.site-footer{border-top:1px solid var(--border);padding:24px 0;margin-top:40px;color:var(--muted)}
+/* Featured overlay: use accent-2 and accent-3 to tint previews */
+.design-card .preview{position:relative}
+.design-card .preview::after{content:'';position:absolute;left:0;right:0;bottom:0;top:0;background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.22)), linear-gradient(90deg, rgba(0,0,0,0.0), rgba(0,0,0,0.0));mix-blend-mode:multiply;pointer-events:none}
+.design-card .preview .accent-strip{position:absolute;left:0;right:0;height:6px;bottom:0;background:linear-gradient(90deg,var(--accent-2),var(--accent-3));}
+
+.site-footer{border-top:1px solid var(--border);padding:24px 0;margin-top:40px;color:var(--muted);background:linear-gradient(180deg, transparent, rgba(0,0,0,0.02))}
 .site-footer .container{display:flex;justify-content:space-between;align-items:center}
 .site-footer a{color:var(--muted)}
-.site-footer a:hover{color:var(--accent)}
+.site-footer a:hover{color:var(--accent-2)}
 
 /* Search and results */
 .search-hero{padding:40px 0}
 .search-form{display:flex;gap:8px}
-.search-form input, .search-form select{padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--glass);color:var(--text);min-width:0}
+.search-form input, .search-form select{padding:12px;border-radius:10px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);color:var(--text);min-width:0;box-shadow:inset 0 1px 0 rgba(255,255,255,0.02)}
 
-.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:transparent;border:1px solid var(--border);color:var(--text);text-decoration:none}
-.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#051019}
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:transparent;border:1px solid var(--border);color:var(--text);text-decoration:none;transition:all 200ms ease}
+.btn-primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));border:none;color:var(--accent-1-foreground)}
+.btn.alt{background:linear-gradient(90deg,var(--accent-2),var(--accent-3));color:var(--accent-2-foreground)}
 .btn.ghost{background:transparent;border:1px dashed var(--border)}
+.btn:hover{transform:translateY(-2px)}
 .muted{color:var(--muted);text-decoration:none}
 .muted:hover{color:var(--text)}
 
+/* Auth & form surfaces get accent edges */
 .auth-page{display:flex;min-height:100vh;align-items:center;justify-content:center}
-.auth-card{background:var(--card);padding:28px;border-radius:14px;min-width:320px;max-width:420px;border:1px solid var(--border)}
+.auth-card{background:var(--card);padding:28px;border-radius:14px;min-width:320px;max-width:420px;border:1px solid var(--border);box-shadow:var(--card-shadow)}
 .auth-card h1{margin-top:0}
 .auth-form label{display:block;margin-bottom:12px;color:var(--muted)}
-.auth-form input, .auth-form textarea, .auth-form select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--glass);color:var(--text)}
+.auth-form input, .auth-form textarea, .auth-form select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);color:var(--text)}
 .auth-actions{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
 
+/* Account panel — use multiple accents for stronger differentiation */
 .account-page{display:flex;gap:24px;padding:40px 0}
 .account-sidebar{width:260px}
-.account-sidebar .profile{background:var(--card);padding:18px;border-radius:12px;text-align:center;border:1px solid var(--border)}
+.account-sidebar .profile{background:linear-gradient(90deg,var(--accent-1),var(--accent-3));padding:18px;border-radius:12px;text-align:center;color:var(--accent-1-foreground);border:1px solid rgba(0,0,0,0.06);box-shadow:0 8px 26px rgba(0,0,0,0.18)}
+.account-sidebar .profile img{border-radius:50%;width:72px;height:72px;border:4px solid rgba(255,255,255,0.08)}
+.account-sidebar nav a{display:block;padding:10px;border-radius:8px;color:var(--text);text-decoration:none}
+.account-sidebar nav a:hover{background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent)}
 .account-main{flex:1}
 
 .design-page{display:grid;grid-template-columns:1fr 320px;gap:24px;padding:40px 0}
@@ -162,12 +225,16 @@ body{
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .gallery-grid img{width:100%;height:60px;object-fit:cover;border-radius:6px}
 
-/* more prominent accents: apply subtle accent backgrounds where appropriate */
-.badge{display:inline-block;padding:6px 8px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.03), transparent);color:var(--muted);border:1px solid var(--border)}
-.accent-bg{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#051019;padding:6px 10px;border-radius:8px}
+/* badges, tags — use each accent for variety */
+.badge{display:inline-block;padding:6px 8px;border-radius:8px;background:linear-gradient(90deg,var(--accent-2),var(--accent-3));color:var(--accent-2-foreground);border:1px solid rgba(0,0,0,0.06)}
+.accent-bg{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:var(--accent-1-foreground);padding:6px 10px;border-radius:8px}
+.tag{display:inline-block;padding:4px 8px;border-radius:999px;background:linear-gradient(90deg,var(--accent-3),var(--accent-1));color:var(--accent-3-foreground);border:1px solid var(--border);font-size:13px}
 
 /* focus outlines */
 :focus{outline:none;box-shadow:0 0 0 4px var(--focus);border-radius:8px}
+
+/* transitions for a smoother switch */
+*{transition:background-color 220ms ease,color 220ms ease,border-color 220ms ease,box-shadow 220ms ease,transform 180ms ease}
 
 /* responsive tweaks */
 @media (max-width:900px){
@@ -176,4 +243,5 @@ body{
   .account-page{flex-direction:column}
   .site-header .nav{padding:8px 24px}
   .site-header nav a{margin-left:10px}
+  .account-sidebar{width:100%}
 }
