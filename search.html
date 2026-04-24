@@ -3,40 +3,59 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Explore  Open Architecture</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Explore Designs  Open Architecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="brand">Open<span>Arch</span></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="search.html">Explore</a>
-      <a href="upload.html">Upload</a>
-      <a href="account.html" id="accountLink">Account</a>
-      <a href="login.html" id="loginLink">Sign In</a>
-    </nav>
+    <div class="container nav">
+      <a class="brand" href="/">OpenArchitecture</a>
+      <nav>
+        <a href="/search.html">Explore</a>
+        <a href="/upload.html" class="cta">Upload</a>
+        <a href="/account.html">Account</a>
+        <select class="theme-select" id="themeSelectSearch" aria-label="Theme selector">
+          <option value="mint">Mint</option>
+          <option value="sunset">Sunset</option>
+          <option value="ocean">Ocean</option>
+          <option value="paper">Paper</option>
+        </select>
+      </nav>
+    </div>
   </header>
 
-  <main class="search-page container">
-    <h1>Explore Designs & Architects</h1>
-    <div class="search-bar">
-      <input id="searchInput" placeholder="Search designs, styles, materials, architects...">
-      <select id="filterType">
-        <option value="all">All</option>
-        <option value="design">Designs</option>
-        <option value="architect">Architects</option>
-      </select>
-      <button id="doSearch" class="btn">Search</button>
-    </div>
+  <main class="container">
+    <section class="search-hero">
+      <h1>Find designs & architects</h1>
+      <form class="search-form" id="searchForm">
+        <input type="search" id="q" placeholder="search designs, architects, tags..." />
+        <select id="type">
+          <option value="all">All</option>
+          <option value="design">Designs</option>
+          <option value="architect">Architects</option>
+        </select>
+        <button class="btn btn-primary">Search</button>
+      </form>
+    </section>
 
-    <div id="results" class="results-grid">
-      <!-- populated by JS -->
-    </div>
-
+    <section class="results">
+      <div id="resultsGrid" class="grid"></div>
+    </section>
   </main>
 
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/search.js"></script>
+  <script src="/js/search.js"></script>
+  <script>
+    // sync theme controls across pages
+    const sel = document.getElementById('themeSelectSearch')
+    const saved = localStorage.getItem('oa.theme') || 'mint'
+    document.documentElement.dataset.theme = saved
+    if(sel) sel.value = saved
+    sel?.addEventListener('change', e=>{
+      const v = e.target.value
+      document.documentElement.dataset.theme = v
+      localStorage.setItem('oa.theme', v)
+    })
+  </script>
 </body>
 </html>

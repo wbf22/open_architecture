@@ -4,36 +4,61 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Account  Open Architecture</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="brand">Open<span>Arch</span></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="search.html">Explore</a>
-      <a href="upload.html">Upload</a>
-      <a href="account.html" id="accountLink">Account</a>
-      <a href="login.html" id="loginLink">Sign In</a>
-    </nav>
+    <div class="container nav">
+      <a class="brand" href="/">OpenArchitecture</a>
+      <nav>
+        <a href="/search.html">Explore</a>
+        <a href="/upload.html" class="cta">Upload</a>
+        <a href="/account.html">Account</a>
+        <select class="theme-select" id="themeSelectAccount" aria-label="Theme selector">
+          <option value="mint">Mint</option>
+          <option value="sunset">Sunset</option>
+          <option value="ocean">Ocean</option>
+          <option value="paper">Paper</option>
+        </select>
+      </nav>
+    </div>
   </header>
 
   <main class="container account-page">
-    <aside class="profile card">
-      <img src="assets/images/avatar.png" class="avatar" alt="avatar">
-      <h2 id="acctName">A. Architect</h2>
-      <p id="acctBio">Architect, educator, open-source enthusiast.</p>
-      <a href="upload.html" class="btn">Upload Design</a>
+    <aside class="account-sidebar">
+      <div class="profile">
+        <img src="/images/avatar.jpg" alt="Profile" />
+        <h2>LinA M.</h2>
+        <small>Portland, OR</small>
+      </div>
+      <nav>
+        <a href="#">Profile</a>
+        <a href="#">My designs</a>
+        <a href="#">Settings</a>
+        <a href="#">Billing</a>
+      </nav>
     </aside>
 
-    <section class="account-content">
-      <h1>Your Designs</h1>
-      <div id="userDesigns" class="results-grid">
+    <section class="account-main">
+      <h1>Your designs</h1>
+      <div class="grid" id="myDesigns">
         <!-- user designs -->
       </div>
     </section>
   </main>
 
-  <script src="assets/js/app.js"></script>
+  <script src="/js/account.js"></script>
+  <script>
+    const sel = document.getElementById('themeSelectAccount')
+    const saved = localStorage.getItem('oa.theme') || 'mint'
+    document.documentElement.dataset.theme = saved
+    if(sel) sel.value = saved
+    sel?.addEventListener('change', e=>{
+      const v = e.target.value
+      document.documentElement.dataset.theme = v
+      localStorage.setItem('oa.theme', v)
+    })
+  </script>
 </body>
 </html>

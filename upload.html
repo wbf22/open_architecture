@@ -3,56 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Upload Design  Open Architecture</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Upload a design  Open Architecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="brand">Open<span>Arch</span></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="search.html">Explore</a>
-      <a href="upload.html">Upload</a>
-      <a href="account.html" id="accountLink">Account</a>
-      <a href="login.html" id="loginLink">Sign In</a>
-    </nav>
+    <div class="container nav">
+      <a class="brand" href="/">OpenArchitecture</a>
+      <nav>
+        <a href="/search.html">Explore</a>
+        <a href="/upload.html" class="cta">Upload</a>
+        <a href="/account.html">Account</a>
+        <select class="theme-select" id="themeSelectUpload" aria-label="Theme selector">
+          <option value="mint">Mint</option>
+          <option value="sunset">Sunset</option>
+          <option value="ocean">Ocean</option>
+          <option value="paper">Paper</option>
+        </select>
+      </nav>
+    </div>
   </header>
 
   <main class="container upload-page">
-    <h1>Share a Design</h1>
-    <form id="uploadForm" class="card">
+    <h1>Share a design</h1>
+    <form class="upload-form" id="uploadForm">
       <label>Title
-        <input type="text" id="title" required>
+        <input type="text" name="title" required />
       </label>
       <label>Description
-        <textarea id="description" rows="6" required></textarea>
+        <textarea name="description"></textarea>
       </label>
-      <label>Category
-        <select id="category">
-          <option>Residential</option>
-          <option>Community</option>
-          <option>Commercial</option>
-          <option>Landscape</option>
-        </select>
+      <label>Tags
+        <input name="tags" placeholder="park, timber, community" />
       </label>
-      <label>Image
-        <input type="file" id="image">
+      <label>Files
+        <input type="file" name="files" multiple />
       </label>
       <label>License
-        <select id="license">
-          <option>Creative Commons</option>
+        <select name="license">
+          <option>CC BY 4.0</option>
+          <option>CC0</option>
           <option>All Rights Reserved</option>
-          <option>GPL</option>
         </select>
       </label>
-
-      <div class="form-actions">
-        <button class="btn" type="submit">Publish</button>
-        <a href="account.html" class="btn secondary">Cancel</a>
+      <div class="upload-actions">
+        <button class="btn btn-primary">Upload</button>
+        <a class="muted" href="#">Need help formatting files?</a>
       </div>
     </form>
   </main>
 
-  <script src="assets/js/app.js"></script>
+  <script src="/js/upload.js"></script>
+  <script>
+    const sel = document.getElementById('themeSelectUpload')
+    const saved = localStorage.getItem('oa.theme') || 'mint'
+    document.documentElement.dataset.theme = saved
+    if(sel) sel.value = saved
+    sel?.addEventListener('change', e=>{
+      const v = e.target.value
+      document.documentElement.dataset.theme = v
+      localStorage.setItem('oa.theme', v)
+    })
+  </script>
 </body>
 </html>

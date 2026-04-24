@@ -3,45 +3,104 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Design  Open Architecture</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Design  Riverside Pavilion  Open Architecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="brand">Open<span>Arch</span></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="search.html">Explore</a>
-      <a href="upload.html">Upload</a>
-      <a href="account.html" id="accountLink">Account</a>
-      <a href="login.html" id="loginLink">Sign In</a>
-    </nav>
+    <div class="container nav">
+      <a class="brand" href="/">OpenArchitecture</a>
+      <nav>
+        <a href="/search.html">Explore</a>
+        <a href="/upload.html" class="cta">Upload</a>
+        <a href="/account.html">Account</a>
+        <select class="theme-select" id="themeSelectDesign" aria-label="Theme selector">
+          <option value="mint">Mint</option>
+          <option value="sunset">Sunset</option>
+          <option value="ocean">Ocean</option>
+          <option value="paper">Paper</option>
+        </select>
+      </nav>
+    </div>
   </header>
 
   <main class="container design-page">
-    <div class="design-media">
-      <img id="designImage" src="assets/images/sample-design.jpg" alt="Design">
-    </div>
-    <div class="design-info">
-      <h1 id="designTitle">Modern Community Center</h1>
-      <p class="meta">By <a href="#" id="designerLink">A. Architect</a> • Category: Community • License: Creative Commons</p>
-      <p id="designDesc">A flexible, low-cost community center design focused on natural ventilation and modular construction.</p>
+    <div class="design-main">
+      <div class="design-media">
+        <img src="/images/hero-sample.jpg" alt="Riverside Pavilion" />
+      </div>
+      <div class="design-info">
+        <h1>Riverside Pavilion</h1>
+        <p class="meta">by <a href="/architect.html">Lina M.</a> 32 downloads 32k views</p>
+        <p class="desc">A lightweight pavilion designed for community events by the river. Modular timber framing and an open floor plan make it easy to build and adapt. Released under CC-BY.</p>
 
-      <div class="design-actions">
-        <a class="btn" id="downloadBtn">Download Plans</a>
-        <a class="btn secondary" id="forkBtn">Fork & Modify</a>
+        <div class="actions">
+          <a class="btn btn-primary" href="#">Download</a>
+          <a class="btn" href="#">Save</a>
+          <a class="btn ghost" href="#">Request commission</a>
+        </div>
+
+        <section class="details">
+          <h3>Details</h3>
+          <ul>
+            <li>Materials: timber, concrete footings</li>
+            <li>Footprint: 120 m</li>
+            <li>Estimated cost: $24k</li>
+            <li>License: CC BY 4.0</li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <aside class="design-sidebar">
+      <div class="card">
+        <h4>Architect</h4>
+        <div class="author">
+          <img src="/images/avatar.jpg" alt="Lina" />
+          <div>
+            <strong>Lina Morales</strong>
+            <small>Portland, OR</small>
+          </div>
+        </div>
+        <a class="btn" href="/architect.html">View profile</a>
       </div>
 
-      <h3>Details</h3>
-      <ul class="details">
-        <li>Footprint: 200 m²</li>
-        <li>Materials: Bamboo, compressed earth blocks, reclaimed steel</li>
-        <li>Estimated Cost: $25k</li>
-      </ul>
-
-    </div>
+      <div class="card">
+        <h4>Gallery</h4>
+        <div class="gallery-grid">
+          <img src="/images/thumb1.jpg" alt="" />
+          <img src="/images/thumb2.jpg" alt="" />
+          <img src="/images/thumb3.jpg" alt="" />
+        </div>
+      </div>
+    </aside>
   </main>
 
-  <script src="assets/js/app.js"></script>
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        OpenArchitecture  Built for beautiful, open design
+      </div>
+      <nav>
+        <a href="/search.html">Explore</a>
+        <a href="/signup.html">Sign up</a>
+        <a href="/login.html">Login</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const sel = document.getElementById('themeSelectDesign')
+    const saved = localStorage.getItem('oa.theme') || 'mint'
+    document.documentElement.dataset.theme = saved
+    if(sel) sel.value = saved
+    sel?.addEventListener('change', e=>{
+      const v = e.target.value
+      document.documentElement.dataset.theme = v
+      localStorage.setItem('oa.theme', v)
+    })
+  </script>
 </body>
 </html>

@@ -1,0 +1,179 @@
+/* Themeable CSS variables — switch themes via document.documentElement.dataset.theme = 'mint' | 'sunset' | 'ocean' | 'paper' */
+:root{
+  /* semantic tokens used across the site */
+  --bg: #0f1724; /* page background */
+  --card: #0b1220; /* surface / cards */
+  --muted: #98a0b3; /* subdued text */
+  --accent: #6ee7b7; /* primary accent */
+  --accent-2: #7c4dff; /* secondary accent (gradient end) */
+  --text: #e6eef8; /* main text */
+  --glass: rgba(255,255,255,0.04);
+  --radius: 12px;
+  --max-width: 1100px;
+  --focus: rgba(110,231,183,0.18);
+  --border: rgba(255,255,255,0.06);
+  --header-bg: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  --card-shadow: 0 10px 30px rgba(6,10,18,0.6);
+  --hero-overlay: linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.18));
+}
+
+/* Mint (default) */
+:root, :root[data-theme='mint']{
+  --bg: #0f1724;
+  --card: #0b1220;
+  --muted: #98a0b3;
+  --accent: #6ee7b7;
+  --accent-2: #7c4dff;
+  --text: #e6eef8;
+  --focus: rgba(110,231,183,0.12);
+  --border: rgba(255,255,255,0.06);
+  --header-bg: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  --card-shadow: 0 10px 30px rgba(6,10,18,0.6);
+  --hero-overlay: linear-gradient(180deg, rgba(110,231,183,0.06), rgba(124,77,255,0.02));
+}
+
+/* Sunset: warm coral / gold */
+:root[data-theme='sunset']{
+  --bg: linear-gradient(180deg,#1a0f12,#12090a);
+  --card: #1a0f12;
+  --muted: #d6b7a8;
+  --accent: #ffb366; /* warm gold */
+  --accent-2: #ff6b6b; /* coral */
+  --text: #fff6f3;
+  --focus: rgba(255,182,102,0.12);
+  --border: rgba(255,182,102,0.08);
+  --header-bg: linear-gradient(180deg, rgba(255,182,102,0.02), transparent);
+  --card-shadow: 0 10px 30px rgba(20,8,8,0.6);
+  --hero-overlay: linear-gradient(180deg, rgba(255,182,102,0.06), rgba(255,107,107,0.03));
+}
+
+/* Ocean: deep blue / teal */
+:root[data-theme='ocean']{
+  --bg: linear-gradient(180deg,#031527,#021018);
+  --card: #072033;
+  --muted: #86b4c6;
+  --accent: #2dd4bf; /* teal */
+  --accent-2: #3b82f6; /* blue */
+  --text: #e6f6f9;
+  --focus: rgba(45,212,191,0.12);
+  --border: rgba(45,212,191,0.06);
+  --header-bg: linear-gradient(180deg, rgba(45,212,191,0.02), transparent);
+  --card-shadow: 0 10px 30px rgba(2,10,18,0.6);
+  --hero-overlay: linear-gradient(180deg, rgba(45,212,191,0.06), rgba(59,130,246,0.03));
+}
+
+/* Paper: light, muted neutrals for a daytime/print feel */
+:root[data-theme='paper']{
+  --bg: linear-gradient(180deg,#f7f5f2,#efece8);
+  --card: #ffffff;
+  --muted: #6b6b6b;
+  --accent: #ffb703; /* saffron */
+  --accent-2: #fb5607; /* rust */
+  --text: #111111;
+  --focus: rgba(251,86,7,0.06);
+  --border: rgba(17,17,17,0.06);
+  --header-bg: linear-gradient(180deg, rgba(17,17,17,0.02), transparent);
+  --card-shadow: 0 8px 20px rgba(17,17,17,0.06);
+  --hero-overlay: linear-gradient(180deg, rgba(255,183,3,0.04), rgba(251,86,7,0.02));
+}
+
+/* base layout */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+.container{max-width:var(--max-width);margin:0 auto;padding:24px}
+
+.site-header{backdrop-filter: blur(6px);position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);background:var(--header-bg)}
+.site-header .nav{display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;color:var(--text);text-decoration:none;font-size:18px}
+.site-header nav{display:flex;align-items:center}
+.site-header nav a{color:var(--muted);text-decoration:none;margin-left:18px}
+.site-header nav a.cta{padding:8px 12px;border-radius:8px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#051019;font-weight:700}
+.site-header nav a:hover{color:var(--accent)}
+
+/* Theme select styling */
+.theme-select{
+  margin-left:12px;padding:6px 8px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text)
+}
+
+.hero{padding:48px 0}
+.hero-inner{display:flex;gap:28px;align-items:center}
+.hero-copy{flex:1}
+.hero h1{font-size:36px;margin:0 0 12px}
+.hero p{margin:0 0 16px;color:var(--muted)}
+.hero-ctas .btn{margin-right:12px}
+
+.hero-card{width:320px;border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);box-shadow:var(--card-shadow);border:1px solid var(--border);position:relative}
+.card-top img{display:block;width:100%;height:200px;object-fit:cover}
+.card-top::after{content:'';position:absolute;left:0;right:0;top:0;height:200px;background:var(--hero-overlay);pointer-events:none}
+.card-bottom{padding:12px;background:linear-gradient(180deg,transparent, rgba(0,0,0,0.02))}
+
+.vision{padding:40px 0}
+.vision h2{margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--card);padding:18px;border-radius:12px;border:1px solid var(--border);box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+.card h3{margin-top:0}
+
+.featured{padding:30px 0}
+#featured-grid .design-card{padding:0;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);overflow:hidden;border-radius:12px}
+.design-card img{width:100%;height:160px;object-fit:cover;display:block}
+.design-card .info{padding:12px}
+
+.site-footer{border-top:1px solid var(--border);padding:24px 0;margin-top:40px;color:var(--muted)}
+.site-footer .container{display:flex;justify-content:space-between;align-items:center}
+.site-footer a{color:var(--muted)}
+.site-footer a:hover{color:var(--accent)}
+
+/* Search and results */
+.search-hero{padding:40px 0}
+.search-form{display:flex;gap:8px}
+.search-form input, .search-form select{padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--glass);color:var(--text);min-width:0}
+
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:transparent;border:1px solid var(--border);color:var(--text);text-decoration:none}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#051019}
+.btn.ghost{background:transparent;border:1px dashed var(--border)}
+.muted{color:var(--muted);text-decoration:none}
+.muted:hover{color:var(--text)}
+
+.auth-page{display:flex;min-height:100vh;align-items:center;justify-content:center}
+.auth-card{background:var(--card);padding:28px;border-radius:14px;min-width:320px;max-width:420px;border:1px solid var(--border)}
+.auth-card h1{margin-top:0}
+.auth-form label{display:block;margin-bottom:12px;color:var(--muted)}
+.auth-form input, .auth-form textarea, .auth-form select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--glass);color:var(--text)}
+.auth-actions{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+
+.account-page{display:flex;gap:24px;padding:40px 0}
+.account-sidebar{width:260px}
+.account-sidebar .profile{background:var(--card);padding:18px;border-radius:12px;text-align:center;border:1px solid var(--border)}
+.account-main{flex:1}
+
+.design-page{display:grid;grid-template-columns:1fr 320px;gap:24px;padding:40px 0}
+.design-media img{width:100%;border-radius:12px}
+.design-info .meta{color:var(--muted)}
+.design-sidebar .card{margin-bottom:12px}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.gallery-grid img{width:100%;height:60px;object-fit:cover;border-radius:6px}
+
+/* more prominent accents: apply subtle accent backgrounds where appropriate */
+.badge{display:inline-block;padding:6px 8px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.03), transparent);color:var(--muted);border:1px solid var(--border)}
+.accent-bg{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#051019;padding:6px 10px;border-radius:8px}
+
+/* focus outlines */
+:focus{outline:none;box-shadow:0 0 0 4px var(--focus);border-radius:8px}
+
+/* responsive tweaks */
+@media (max-width:900px){
+  .hero-inner{flex-direction:column}
+  .design-page{grid-template-columns:1fr}
+  .account-page{flex-direction:column}
+  .site-header .nav{padding:8px 24px}
+  .site-header nav a{margin-left:10px}
+}

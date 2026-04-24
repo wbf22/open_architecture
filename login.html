@@ -3,37 +3,48 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sign In  Open Architecture</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>Login  Open Architecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">Open<span>Arch</span></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="search.html">Explore</a>
-      <a href="upload.html">Upload</a>
-      <a href="account.html" id="accountLink">Account</a>
-      <a href="login.html" id="loginLink">Sign In</a>
-    </nav>
-  </header>
-
-  <main class="auth container">
-    <h1>Sign In</h1>
-    <form id="loginForm" class="card">
-      <label>Email
-        <input type="email" id="email" required>
-      </label>
-      <label>Password
-        <input type="password" id="password" required>
-      </label>
-      <div class="form-actions">
-        <button class="btn" type="submit">Sign In</button>
-        <a href="signup.html" class="btn secondary">Create Account</a>
+  <main class="auth-page container">
+    <div class="auth-card">
+      <h1>Welcome back</h1>
+      <p>Sign in to access your account and manage your designs.</p>
+      <form class="auth-form">
+        <label>Email
+          <input type="email" required />
+        </label>
+        <label>Password
+          <input type="password" required />
+        </label>
+        <div class="auth-actions">
+          <button class="btn btn-primary">Login</button>
+          <a href="/signup.html" class="muted">Create an account</a>
+        </div>
+      </form>
+      <div style="margin-top:12px;color:var(--muted)">Theme: 
+        <select id="themeSelectLogin" class="theme-select">
+          <option value="mint">Mint</option>
+          <option value="sunset">Sunset</option>
+          <option value="ocean">Ocean</option>
+          <option value="paper">Paper</option>
+        </select>
       </div>
-    </form>
+    </div>
   </main>
 
-  <script src="assets/js/app.js"></script>
+  <script>
+    const sel = document.getElementById('themeSelectLogin')
+    const saved = localStorage.getItem('oa.theme') || 'mint'
+    document.documentElement.dataset.theme = saved
+    if(sel) sel.value = saved
+    sel?.addEventListener('change', e=>{
+      const v = e.target.value
+      document.documentElement.dataset.theme = v
+      localStorage.setItem('oa.theme', v)
+    })
+  </script>
 </body>
 </html>
